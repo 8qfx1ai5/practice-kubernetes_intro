@@ -37,9 +37,9 @@ cat k8s-kubeadm-test.pub | xclip -selection clipboard
 ```
 
 ### we need vms
-#### create 3 vms with ubuntu > 16 | + 2gb ram
-#### ensure / put ssh-keys on the machine
-#### copy ips
+- create 3 vms with ubuntu > 16 | + 2gb ram
+- ensure / put ssh-keys on the machine
+- copy ips
 
 
 ### ssh into all vms
@@ -50,8 +50,9 @@ ssh root@95.216.188.177
 ```
 
 ### install docker on all machienes
-### changed docker version from 17 to 18 bec 17 not found on ubuntu 18
-### run on all
+- changed docker version from 17 to 18 bec 17 not found on ubuntu 18
+- run on all
+
 ``` bash
 apt-get update
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common
@@ -62,7 +63,8 @@ apt-get update && apt-get install -y docker-ce=$(apt-cache madison docker-ce | g
 ```
 
 ### install kubeadm on all machienes
-### run on all
+- run on all
+
 ``` bash
 apt-get update && apt-get install -y apt-transport-https curl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
@@ -75,45 +77,51 @@ apt-mark hold kubelet kubeadm kubectl
 ```
 
 ### preperation for pod-network
-### run on all
+- run on all
+
 ``` bash
 sysctl net.bridge.bridge-nf-call-iptables=1
 ```
 
 ### disable swap
-### run on all
+- run on all
+
 ``` bash
 swapoff -a
 sed -i '/ swap / s/^/#/' /etc/fstab
 ```
 
 ### create master
-### MASTER ONLY
+- run on MASTER ONLY
+
 ``` bash
 kubeadm init --ignore-preflight-errors=cri
 cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 ```
 
 ### join worker nodes
-### WORKER nodes
+- run on WORKER nodes
+
 ``` bash
 kubeadm join 95.216.188.168:6443 --token q65wgj.6rockbbb6q5b20fk --discovery-token-ca-cert-hash sha256:e597db683f78ba3a0ce545fec0cbf778da8e2c2107c3ad2a31ddf2f1d8745e89
 ```
 
 ### check nodes
-### MASTER ONLY
+- run on MASTER ONLY
+
 ``` bash
 kubectl get nodes
 ```
 
 ### install pod-network
-### MASTER ONLY
+- run on MASTER ONLY
+
 ``` bash
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
 
 ### deploy sock shop
-### MASTER ONLY
+- run on MASTER ONLY
 ``` bash
 git clone https://github.com/microservices-demo/microservices-demo.git
 kubectl create namespace sock-shop
@@ -121,6 +129,8 @@ kubectl apply -f microservices-demo/deploy/kubernetes/complete-demo.yaml
 ```
 
 ### check sock shop
+- run on MASTER ONLY
+
 ``` bash
 kubectl -n sock-shop get pods
 ```
