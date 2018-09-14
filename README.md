@@ -139,6 +139,10 @@ ____
 ## Tear down
 
 ## What’s next
+- https://www.weave.works/docs/scope/latest/installing/#k8s
+- docker registry
+- gitlab-ci
+- example pipeline
 
 ## Feedback
 
