@@ -96,7 +96,7 @@ sed -i '/ swap / s/^/#/' /etc/fstab
 
 ``` bash
 kubeadm init --ignore-preflight-errors=cri
-cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+mkdir -p $HOME/.kube/; cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 ```
 
 ### join worker nodes
