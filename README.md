@@ -133,6 +133,9 @@ kubectl apply -f microservices-demo/deploy/kubernetes/complete-demo.yaml
 
 ``` bash
 kubectl -n sock-shop get pods
+
+# check nodeport
+kubectl -n sock-shop get svc
 ```
 ____
 
