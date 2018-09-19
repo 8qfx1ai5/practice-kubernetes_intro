@@ -101,8 +101,10 @@ mkdir -p $HOME/.kube/; cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 
 ### join worker nodes
 - run on WORKER nodes
+- the following command is an EXAMPLE command, copy the true command from the output of the `kubeadm init --ignore-preflight-errors=cri`
 
 ``` bash
+# EXAMPLE ... copy the original command from the output of the `kubeadm init --ignore-preflight-errors=cri` command
 kubeadm join 95.216.188.168:6443 --token q65wgj.6rockbbb6q5b20fk --discovery-token-ca-cert-hash sha256:e597db683f78ba3a0ce545fec0cbf778da8e2c2107c3ad2a31ddf2f1d8745e89
 ```
 
