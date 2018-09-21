@@ -62,8 +62,10 @@ add-apt-repository "deb https://download.docker.com/linux/$(. /etc/os-release; e
 apt-get update && apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 18.06.1 | head -1 | awk '{print $3}')
 ```
 
-### install kubeadm on all machienes
+### install kubeadm, kubelet and kubectl on all machienes
 - run on all
+
+update/add packages
 
 ``` bash
 apt-get update && apt-get install -y apt-transport-https curl
@@ -72,8 +74,22 @@ cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
 deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 apt-get update
-# apt-get install -y kubelet kubeadm kubectl
+```
+
+check existing versions
+
+```
+apt-cache policy kubelet
+apt-cache policy kubeadm
+apt-cache policy kubectl
+```
+
+install
+
+```
+# instead of install latest with  `apt-get install -y kubelet kubeadm kubectl` install with specific version:
 apt-get  install kubelet=1.11.3-00 kubeadm=1.11.3-00 kubectl=1.11.3-00
+# hold the packages so they don't get updated
 apt-mark hold kubelet kubeadm kubectl
 ```
 
