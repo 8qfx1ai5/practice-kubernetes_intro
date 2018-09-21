@@ -35,6 +35,10 @@ ssh-keygen -b 2048 -t rsa -N '' -f k8s-kubeadm-test
 ssh-add k8s-kubeadm-test
 cat k8s-kubeadm-test.pub | xclip -selection clipboard
 ```
+<details>
+<summary>Show explanation</summary>
+add explanation
+</details>
 
 ### we need vms
 - create 3 vms with ubuntu > 16 | + 2gb ram
