@@ -3,9 +3,9 @@ tutorial to show how to setup a minimum viable Kubernetes cluster with kubeadm
 
 ## Before you begin
 
-This tutorial is going to use digitalocean as a cloud computing platform, which will provide us with 2 or 3 nodes to host our kubernetes cluster on.
+This tutorial is going to use a cloud computing platform such as digitalocean or hetzner cloud, which will provide us with 2 or 3 nodes to host our kubernetes cluster on.
 
-This tutorial should be interchangeable with other cloud native solutions (e.g. hetzner cloud).
+The cloud computing platform should be interchangeable with each other.
 
 While automation is baked into my being this tutorial will do everything manually, as well documented as possible to give an step by step insight on how to setup such a cluster.
 Obviosly one of the next steps after going through this tutorial should be to automate these steps by useig tools such as e.g. ansible. But this is not part of this tutorial.
