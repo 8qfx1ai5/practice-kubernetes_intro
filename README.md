@@ -104,6 +104,8 @@ apt-mark hold kubelet kubeadm kubectl
 sysctl net.bridge.bridge-nf-call-iptables=1
 ```
 
+source: https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#network-plugin-requirements
+
 ### disable swap
 - run on all
 
