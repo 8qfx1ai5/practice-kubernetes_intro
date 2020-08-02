@@ -21,6 +21,8 @@ node0 = master node
 node1 = worker node
 (node2 = worker node) (optional)
 
+The commands are optimized for Ubuntu >=18.
+
 ## Objectives
 
 ____
@@ -57,7 +59,7 @@ ssh root@95.216.188.177
 - run on all nodes
 
 ```
-apt-get update && apt-get upgrade
+apt-get update && apt-get upgrade -y
 ```
 
 ### install docker on all machienes
@@ -94,7 +96,7 @@ install
 
 ```
 # instead of install latest with  `apt-get install -y kubelet kubeadm kubectl` install with specific version:
-apt-get  install kubelet=1.18.6-00 kubeadm=1.18.6-00 kubectl=1.18.6-00
+apt-get install -y kubelet=1.18.6-00 kubeadm=1.18.6-00 kubectl=1.18.6-00
 # hold the packages so they don't get updated
 apt-mark hold kubelet kubeadm kubectl
 ```
