@@ -53,17 +53,19 @@ ssh root@95.216.188.176
 ssh root@95.216.188.177
 ```
 
+### update all nodes
+- run on all nodes
+
+```
+apt-get update && apt-get upgrade
+```
+
 ### install docker on all machienes
-- changed docker version from 17 to 18 bec 17 not found on ubuntu 18
 - run on all
 
 ``` bash
-apt-get update
-apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository "deb https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
-# apt-get update && apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 17.03 | head -1 | awk '{print $3}')
-apt-get update && apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 18.06.1 | head -1 | awk '{print $3}')
+apt-get install -y docker.io
+systemctl enable docker.service
 ```
 
 ### install kubeadm, kubelet and kubectl on all machienes
@@ -92,7 +94,7 @@ install
 
 ```
 # instead of install latest with  `apt-get install -y kubelet kubeadm kubectl` install with specific version:
-apt-get  install kubelet=1.11.3-00 kubeadm=1.11.3-00 kubectl=1.11.3-00
+apt-get  install kubelet=1.18.6-00 kubeadm=1.18.6-00 kubectl=1.18.6-00
 # hold the packages so they don't get updated
 apt-mark hold kubelet kubeadm kubectl
 ```
@@ -101,7 +103,9 @@ apt-mark hold kubelet kubeadm kubectl
 - run on all
 
 ``` bash
+modprobe br_netfilter
 sysctl net.bridge.bridge-nf-call-iptables=1
+sysctl net.bridge.bridge-nf-call-ip6tables=1
 ```
 
 source: https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#network-plugin-requirements
@@ -145,23 +149,8 @@ kubectl get nodes
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
 
-### deploy sock shop
-- run on MASTER ONLY
-``` bash
-git clone https://github.com/microservices-demo/microservices-demo.git
-kubectl create namespace sock-shop
-kubectl apply -f microservices-demo/deploy/kubernetes/complete-demo.yaml
-```
-
-### check sock shop
-- run on MASTER ONLY
-
-``` bash
-kubectl -n sock-shop get pods
-
-# check nodeport
-kubectl -n sock-shop get svc
-```
+### deploy something...
+todo
 ____
 
 ## Tear down
