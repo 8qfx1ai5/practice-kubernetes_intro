@@ -139,9 +139,16 @@ kubeadm join 95.216.188.168:6443 --token q65wgj.6rockbbb6q5b20fk --discovery-tok
 
 ### check nodes
 - run on MASTER ONLY
+- STATUS should be READY, but it can take a few minutes
 
+#### list nodes
 ``` bash
 kubectl get nodes
+```
+
+#### desplay details of a node
+``` bash
+kubectl describe node <node_name>
 ```
 
 ### install pod-network
